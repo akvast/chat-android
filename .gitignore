@@ -8,4 +8,4 @@
 /captures
 .externalNativeBuild
 
-app/src/obj
+app/src/main/obj
