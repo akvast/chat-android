@@ -7,6 +7,10 @@
         <variable
             name="activity"
             type="com.github.akvast.securechat.ui.AuthActivity" />
+
+        <variable
+            name="connectionVM"
+            type="com.github.akvast.securechat.CConnectionViewModel" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -34,45 +38,100 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <android.support.design.widget.TextInputLayout
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="32dp">
+                    app:goneIf="@{connectionVM.isConnected}">
 
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/email_edit_text"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Email" />
+                        android:orientation="vertical">
 
-                </android.support.design.widget.TextInputLayout>
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginTop="32dp">
 
-                <android.support.design.widget.TextInputLayout
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/email_edit_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Email" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="30dp">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/password_edit_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Password" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <Button
+                            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginBottom="32dp"
+                            android:layout_marginRight="32dp"
+                            android:layout_marginTop="8dp"
+                            android:onClick="@{v -> activity.auth(v)}"
+                            android:text="Authorize" />
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Body1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="32dp"
+                            android:layout_marginLeft="32dp"
+                            android:layout_marginRight="32dp"
+                            android:text="Invalid email or password!"
+                            android:textColor="@color/red_600"
+                            app:goneIf="@{!connectionVM.isAuthFailed}" />
+
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#99ffffff"
+                        android:clickable="true"
+                        app:goneIf="@{!connectionVM.isConnecting}">
+
+                        <ProgressBar
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center" />
+
+                    </FrameLayout>
+
+                </FrameLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp">
+                    android:orientation="vertical"
+                    app:goneIf="@{!connectionVM.isConnected}">
 
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/password_edit_text"
-                        android:layout_width="match_parent"
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Subhead"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Password" />
+                        android:layout_gravity="center"
+                        android:layout_margin="32dp"
+                        android:text="Succeed authorized." />
 
-                </android.support.design.widget.TextInputLayout>
-
-                <Button
-                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginBottom="32dp"
-                    android:layout_marginRight="32dp"
-                    android:layout_marginTop="8dp"
-                    android:onClick="@{v -> activity.auth(v)}"
-                    android:text="Authorize" />
+                </LinearLayout>
 
             </LinearLayout>
 

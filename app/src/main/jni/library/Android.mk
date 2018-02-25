@@ -55,6 +55,9 @@ WILDCARD_FILES      := $(wildcard $(SRC_PATH)/src/common/tools/*.cpp)
 LOCAL_SRC_FILES     += $(WILDCARD_FILES:$(LOCAL_PATH)/%=%)
 
 
+WILDCARD_FILES      := $(wildcard $(SRC_PATH)/src/client/vm/*.cpp)
+LOCAL_SRC_FILES     += $(WILDCARD_FILES:$(LOCAL_PATH)/%=%)
+
 WILDCARD_FILES      := $(wildcard $(SRC_PATH)/src/client/app/*.cpp)
 LOCAL_SRC_FILES     += $(WILDCARD_FILES:$(LOCAL_PATH)/%=%)
 
@@ -71,6 +74,7 @@ LOCAL_C_INCLUDES += $(INCLUDE_PATH) \
                     $(SRC_PATH)/src/common/entities \
                     $(SRC_PATH)/src/common/network \
                     $(SRC_PATH)/src/common/tools \
+                    $(SRC_PATH)/src/client/vm \
                     $(SRC_PATH)/src/client/app \
                     $(SRC_PATH)/src/client/network \
                     $(SRC_PATH)/djinni/support-lib/jni \

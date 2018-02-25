@@ -4,12 +4,16 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.View
 import com.github.akvast.securechat.CApp
+import com.github.akvast.securechat.CConnectionViewModel
+import com.github.akvast.securechat.CViewModelListener
 import com.github.akvast.securechat.R
 import com.github.akvast.securechat.databinding.ActivityAuthBinding
 
 class AuthActivity : BaseActivity() {
 
     lateinit var binding: ActivityAuthBinding
+
+    val connectionViewModel = CConnectionViewModel.instance();
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,10 +22,22 @@ class AuthActivity : BaseActivity() {
                 R.layout.activity_auth)
 
         binding.activity = this
+        binding.connectionVM = connectionViewModel
+
+        connectionViewModel.base.addListener(viewModelListener)
     }
 
     fun auth(view: View) {
-        CApp.instance().auth(binding.emailEditText.text.toString(), binding.passwordEditText.text.toString())
+        val app = CApp.instance()
+        app.setEmail(binding.emailEditText.text.toString())
+        app.setPassword(binding.passwordEditText.text.toString())
+        app.connect()
+    }
+
+    val viewModelListener = object : CViewModelListener() {
+        override fun onChanged() {
+            binding.invalidateAll()
+        }
     }
 
 }
