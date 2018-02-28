@@ -14,6 +14,7 @@ class LauncherActivity : BaseActivity() {
         // TODO: Autologin
 
         startActivity(Intent(this, AuthActivity::class.java))
+        finish();
     }
 
 }

@@ -64,6 +64,9 @@ LOCAL_SRC_FILES     += $(WILDCARD_FILES:$(LOCAL_PATH)/%=%)
 WILDCARD_FILES      := $(wildcard $(SRC_PATH)/src/client/network/*.cpp)
 LOCAL_SRC_FILES     += $(WILDCARD_FILES:$(LOCAL_PATH)/%=%)
 
+WILDCARD_FILES      := $(wildcard $(SRC_PATH)/src/client/adapters/*.cpp)
+LOCAL_SRC_FILES     += $(WILDCARD_FILES:$(LOCAL_PATH)/%=%)
+
 
 LOCAL_C_INCLUDES += $(INCLUDE_PATH) \
                     $(PROTO_PATH)/src \
@@ -77,6 +80,7 @@ LOCAL_C_INCLUDES += $(INCLUDE_PATH) \
                     $(SRC_PATH)/src/client/vm \
                     $(SRC_PATH)/src/client/app \
                     $(SRC_PATH)/src/client/network \
+                    $(SRC_PATH)/src/client/adapters \
                     $(SRC_PATH)/djinni/support-lib/jni \
 
 LOCAL_LDLIBS     += -llog -lz -ldl -ljnigraphics -landroid

@@ -1,5 +1,6 @@
 package com.github.akvast.securechat.ui
 
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.View
@@ -37,6 +38,11 @@ class AuthActivity : BaseActivity() {
     val viewModelListener = object : CViewModelListener() {
         override fun onChanged() {
             binding.invalidateAll()
+
+            if (connectionViewModel.isConnected) {
+                startActivity(Intent(this@AuthActivity, MainActivity::class.java))
+                finish()
+            }
         }
     }
 
