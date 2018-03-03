@@ -40,7 +40,8 @@ class AuthActivity : BaseActivity() {
             binding.invalidateAll()
 
             if (connectionViewModel.isConnected) {
-                startActivity(Intent(this@AuthActivity, MainActivity::class.java))
+                val intent = Intent(this@AuthActivity, MainActivity::class.java)
+                startActivity(Intent.makeMainActivity(intent.component))
                 finish()
             }
         }

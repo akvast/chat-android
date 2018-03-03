@@ -21,8 +21,12 @@
         </activity>
 
         <activity android:name=".ui.AuthActivity" />
+
         <activity android:name=".ui.MainActivity" />
-        <activity android:name=".ui.DialogActivity" />
+
+        <activity
+            android:name=".ui.DialogActivity"
+            android:parentActivityName=".ui.MainActivity" />
 
     </application>
 

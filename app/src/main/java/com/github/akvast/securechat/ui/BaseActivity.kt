@@ -12,16 +12,13 @@ open class BaseActivity : AppCompatActivity() {
         super.setContentView(layoutResID)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        if (toolbar != null) {
+        if (toolbar != null)
             setSupportActionBar(toolbar)
-            supportActionBar?.setDisplayShowHomeEnabled(true)
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
-    }
+//    override fun onSupportNavigateUp(): Boolean {
+//        onBackPressed()
+//        return true
+//    }
 
 }

@@ -27,6 +27,8 @@ class DialogActivity : BaseActivity() {
         binding = DataBindingUtil.setContentView<ActivityDialogBinding>(
                 this,
                 R.layout.activity_dialog)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
 }
