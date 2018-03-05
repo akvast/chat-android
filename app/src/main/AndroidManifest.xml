@@ -28,6 +28,10 @@
             android:name=".ui.DialogActivity"
             android:parentActivityName=".ui.MainActivity" />
 
+        <activity
+            android:name=".ui.SearchActivity"
+            android:parentActivityName=".ui.MainActivity" />
+
     </application>
 
 </manifest>

@@ -64,7 +64,6 @@
             android:layout_gravity="bottom"
             android:background="@color/grey_300" />
 
-
     </FrameLayout>
 
 </layout>
