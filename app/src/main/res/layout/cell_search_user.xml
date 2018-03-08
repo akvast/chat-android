@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="com.github.akvast.mvvm.utils.ViewModelUtils" />
 
         <variable
             name="vm"
@@ -24,19 +27,35 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_margin="16dp"
-                android:background="@color/grey_300" />
+                app:roundAsCircle="true"
+                app:placeholderImage="@color/grey_300"
+                app:src="@{vm.avatar}" />
 
-            <TextView
-                style="@style/TextAppearance.AppCompat.Subhead"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{vm.name}"
                 android:layout_gravity="center_vertical"
-                tools:text="User name" />
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Subhead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{vm.name}"
+                    tools:text="User name" />
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{vm.email}"
+                    tools:text="email@email" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.github.akvast.securechat.ui.vm.NavigationItemViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:minHeight="48dp"
+        android:onClick="@{(v) -> vm.performAction(v)}"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="16dp"
+            android:src="@{vm.icon}"
+            android:tint="@{@color/grey_600}"
+            tools:src="@drawable/ic_add_black_24dp"
+            tools:tint="@color/grey_600" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="8dp"
+            android:text="@{vm.title}"
+            tools:text="Header item title" />
+
+    </FrameLayout>
+
+</layout>

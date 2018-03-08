@@ -1,9 +1,13 @@
 package com.github.akvast.securechat.ui
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.firebase.ui.auth.AuthUI
+import com.github.akvast.securechat.CApp
 import com.github.akvast.securechat.R
+import com.google.firebase.auth.FirebaseAuth
+import java.util.*
+
 
 class LauncherActivity : BaseActivity() {
 
@@ -11,10 +15,41 @@ class LauncherActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launcher)
 
-        // TODO: Autologin
+        val providers = Arrays.asList(AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build())
 
-        startActivity(Intent(this, AuthActivity::class.java))
-        finish();
+        // Create and launch sign-in intent
+        startActivityForResult(
+                AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        .setAvailableProviders(providers)
+                        .build(),
+                0)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == RESULT_OK) {
+
+            val user = FirebaseAuth.getInstance().currentUser
+            user?.getIdToken(false)
+                    ?.addOnCompleteListener {
+
+                        val app = CApp.instance()
+                        app.setToken(it.result.token.toString())
+                        app.setName(user.displayName)
+                        app.setEmail(user.email)
+                        app.setAvatarUrl(user.photoUrl.toString())
+
+                        app.connect()
+
+                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
+                    }
+
+        } else {
+            // TODO:
+        }
     }
 
 }

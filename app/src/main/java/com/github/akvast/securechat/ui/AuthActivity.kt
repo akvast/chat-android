@@ -29,10 +29,10 @@ class AuthActivity : BaseActivity() {
     }
 
     fun auth(view: View) {
-        val app = CApp.instance()
-        app.setEmail(binding.emailEditText.text.toString())
-        app.setPassword(binding.passwordEditText.text.toString())
-        app.connect()
+//        val app = CApp.instance()
+//        app.setEmail(binding.emailEditText.text.toString())
+//        app.setPassword(binding.passwordEditText.text.toString())
+//        app.connect()
     }
 
     val viewModelListener = object : CViewModelListener() {

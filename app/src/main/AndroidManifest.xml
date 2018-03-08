@@ -22,7 +22,9 @@
 
         <activity android:name=".ui.AuthActivity" />
 
-        <activity android:name=".ui.MainActivity" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:theme="@style/AppTheme.TransparentStatusBar" />
 
         <activity
             android:name=".ui.DialogActivity"
